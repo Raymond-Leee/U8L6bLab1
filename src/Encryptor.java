@@ -80,10 +80,10 @@ public class Encryptor
         String[] splitStr = new String[message.length() / (numRows * numCols) + 1];
         for (int i = 0; i < splitStr.length - 1; i++)
         {
-            splitStr[i] = message.substring(index, numRows + numCols + index);
-            index = numRows + numCols;
+            splitStr[i] = message.substring(index, numRows * numCols + index);
+            index += numRows * numCols;
         }
-        for (int j = 0; j < splitStr.length; j++)
+        for (int j = 0; j < splitStr.length - 1; j++)
         {
             fillBlock(splitStr[j]);
             returnStr += encryptBlock();
