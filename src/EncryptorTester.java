@@ -219,7 +219,6 @@ public class EncryptorTester
       System.out.println("EXPECTED: " + expectedEncrypted5);
       System.out.println("  ACTUAL: " + actualEncrypted5);
     }
-
 /*    
     // -------------------------------------
     // ---- TEST PART D: decryptMessage ----

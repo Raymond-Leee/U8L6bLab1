@@ -121,7 +121,7 @@ public class Encryptor
      */
     public String decryptMessage(String encryptedMessage)
     {
-        String returnStr = "";
-
+        String str = "";
+        return str;
     }
 }
