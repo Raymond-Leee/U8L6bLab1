@@ -77,13 +77,19 @@ public class Encryptor
     {
         String returnStr = "";
         int index = 0;
-        String[] splitStr = new String[message.length() / (numRows * numCols) + 1];
+        int length = message.length() / (numRows * numCols) + 1;
+        if (message.length() % (numRows * numCols) == 0)
+        {
+            length--;
+        }
+        String[] splitStr = new String[length];
         for (int i = 0; i < splitStr.length - 1; i++)
         {
             splitStr[i] = message.substring(index, numRows * numCols + index);
             index += numRows * numCols;
         }
-        for (int j = 0; j < splitStr.length - 1; j++)
+        splitStr[splitStr.length - 1] = message.substring(index);
+        for (int j = 0; j < splitStr.length; j++)
         {
             fillBlock(splitStr[j]);
             returnStr += encryptBlock();
@@ -113,8 +119,9 @@ public class Encryptor
      *        (e.g. a method to decrypt each section of the decrypted message,
      *         similar to how encryptBlock was used)
      */
-    //public String decryptMessage(String encryptedMessage)
+    public String decryptMessage(String encryptedMessage)
     {
-        /* to be implemented in part (d) */
+        String returnStr = "";
+
     }
 }
