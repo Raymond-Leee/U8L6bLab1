@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Encryptor
 {
@@ -83,12 +84,18 @@ public class Encryptor
             length--;
         }
         String[] splitStr = new String[length];
-        for (int i = 0; i < splitStr.length - 1; i++)
+        for (int i = 0; i < splitStr.length; i++)
         {
-            splitStr[i] = message.substring(index, numRows * numCols + index);
-            index += numRows * numCols;
+            if (i == splitStr.length - 1)
+            {
+                splitStr[splitStr.length - 1] = message.substring(index);
+            }
+            else
+            {
+                splitStr[i] = message.substring(index, numRows * numCols + index);
+                index += numRows * numCols;
+            }
         }
-        splitStr[splitStr.length - 1] = message.substring(index);
         for (int j = 0; j < splitStr.length; j++)
         {
             fillBlock(splitStr[j]);
@@ -122,6 +129,35 @@ public class Encryptor
     public String decryptMessage(String encryptedMessage)
     {
         String str = "";
+        int length = encryptedMessage.length() / (numRows * numCols) + 1;
+        if (encryptedMessage.length() % (numRows * numCols) == 0) {
+            length--;
+        }
+        for (int i = 0; i < length; i++)
+        {
+            int index = 0;
+            for (int c = 0; c < letterBlock[0].length; c++)
+            {
+                for (int r = 0; r < letterBlock.length; r++)
+                {
+                    letterBlock[r][c] = encryptedMessage.substring(index, index + 1);
+                    index++;
+                }
+            }
+            encryptedMessage = encryptedMessage.substring(index);
+            for (int r = 0; r < letterBlock.length; r++)
+            {
+                for (int c = 0; c < letterBlock[0].length; c++)
+                {
+                    str += letterBlock[r][c];
+                }
+            }
+        }
+
+        while (str.substring(str.length() - 1).equals("A"))
+        {
+            str = str.substring(0, str.length() - 1);
+        }
         return str;
     }
 }
