@@ -17,14 +17,38 @@ public class ChallengeTester
             if (userChoice.equals("E") || userChoice.equals("e"))
             {
                 System.out.print("Enter row number: ");
-                int numRows = sc.nextInt();
+                String numRow = sc.next();
+                if (!(isNum(numRow)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int numRows = Integer.parseInt(numRow);
                 System.out.print("Enter column number: ");
-                int numColumns = sc.nextInt();
+                String numCol = sc.next();
+                if (!(isNum(numCol)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int numCols = Integer.parseInt(numCol);
                 System.out.print("Enter row shift: ");
-                int shiftRow = sc.nextInt();
+                String shiftR = sc.next();
+                if (!(isNum(shiftR)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int shiftRow = Integer.parseInt(shiftR);
                 System.out.print("Enter column shift: ");
-                int shiftCol = sc.nextInt();
-                Encryptor secretMessage = new Encryptor(numRows, numColumns, shiftRow, shiftCol);
+                String shiftC = sc.next();
+                if (!(isNum(shiftC)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int shiftCol = Integer.parseInt(shiftC);
+                Encryptor secretMessage = new Encryptor(numRows, numCols, shiftRow, shiftCol);
                 System.out.print("Enter message that will be encrypted: ");
                 sc.nextLine();
                 String userMessage = sc.nextLine();
@@ -33,14 +57,38 @@ public class ChallengeTester
             else if (userChoice.equals("D") || userChoice.equals("d"))
             {
                 System.out.print("Enter row number: ");
-                int numRows = sc.nextInt();
+                String numRow = sc.next();
+                if (!(isNum(numRow)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int numRows = Integer.parseInt(numRow);
                 System.out.print("Enter column number: ");
-                int numColumns = sc.nextInt();
+                String numCol = sc.next();
+                if (!(isNum(numCol)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int numCols = Integer.parseInt(numCol);
                 System.out.print("Enter row shift: ");
-                int rowShift = sc.nextInt();
+                String shiftR = sc.next();
+                if (!(isNum(shiftR)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int shiftRow = Integer.parseInt(shiftR);
                 System.out.print("Enter column shift: ");
-                int colShift = sc.nextInt();
-                Encryptor secretMessage = new Encryptor(numRows, numColumns, rowShift, colShift);
+                String shiftC = sc.next();
+                if (!(isNum(shiftC)))
+                {
+                    System.out.println("Please enter a number");
+                    System.exit(1);
+                }
+                int shiftCol = Integer.parseInt(shiftC);
+                Encryptor secretMessage = new Encryptor(numRows, numCols, shiftRow, shiftCol);
                 System.out.print("Enter the message that will be decrypted: ");
                 sc.nextLine();
                 String userMessage = sc.nextLine();
@@ -56,5 +104,18 @@ public class ChallengeTester
             }
         }
     }
-}
 
+    static boolean isNum(String number)
+    {
+        int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String check = String.valueOf(number);
+        for (char i : check.toCharArray())
+        {
+            if (Character.isDigit(i))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
