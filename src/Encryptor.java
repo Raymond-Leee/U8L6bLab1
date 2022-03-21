@@ -11,25 +11,12 @@ public class Encryptor
     /** The number of columns of letterBlock, set by the constructor */
     private int numCols;
 
-    private int shiftRows;
-    private int shiftCols;
-
     /** Constructor*/
-    public Encryptor(int r, int c) // Used for EncryptorTester
+    public Encryptor(int r, int c)
     {
         letterBlock = new String[r][c];
         numRows = r;
         numCols = c;
-        shiftRows = 0;
-        shiftCols = 0;
-    }
-    public Encryptor(int r, int c, int shiftRows, int shiftCols) // Used for testing the challenge code
-    {
-        letterBlock = new String[r][c];
-        numRows = r;
-        numCols = c;
-        this.shiftRows = shiftRows;
-        this.shiftCols = shiftCols;
     }
 
     public String[][] getLetterBlock()
@@ -112,8 +99,6 @@ public class Encryptor
         for (int j = 0; j < splitStr.length; j++)
         {
             fillBlock(splitStr[j]);
-            shiftRow(shiftRows);
-            shiftColumn(shiftCols);
             returnStr += encryptBlock();
         }
         return returnStr;
@@ -159,8 +144,6 @@ public class Encryptor
                     index++;
                 }
             }
-            shiftRow(shiftRows * -1);
-            shiftColumn(shiftCols * -1);
             for (int r = 0; r < letterBlock.length; r++)
             {
                 for (int c = 0; c < letterBlock[0].length; c++)
@@ -174,96 +157,5 @@ public class Encryptor
             str = str.substring(0, str.length() - 1);
         }
         return str;
-    }
-
-    public void shiftRow(int shiftAmount)
-    {
-        String[][] tempShift = new String[numRows][numCols];
-        if (shiftAmount >= 0)
-        {
-            for (int r = 0; r < letterBlock.length; r++)
-            {
-                for (int c = 0; c < letterBlock[0].length; c++)
-                {
-                    if (c >= letterBlock[0].length - shiftAmount)
-                    {
-                        tempShift[r][shiftAmount - (numCols - c)] = letterBlock[r][c];
-                    }
-                    else
-                    {
-                        tempShift[r][c + shiftAmount] = letterBlock[r][c];
-                    }
-                }
-            }
-        }
-        else
-        {
-            for (int r = 0; r < letterBlock.length; r++)
-            {
-                for (int c = 0; c < letterBlock[0].length; c++)
-                {
-                    if (c < shiftAmount * -1)
-                    {
-                        tempShift[r][numCols - (shiftAmount * -1 - c)] = letterBlock[r][c];
-                    }
-                    else
-                    {
-                        tempShift[r][c - (shiftAmount * -1)] = letterBlock[r][c];
-                    }
-                }
-            }
-        }
-        for (int r = 0; r < tempShift.length; r++)
-        {
-            for (int c = 0; c < tempShift[0].length; c++)
-            {
-                letterBlock[r][c] = tempShift[r][c];
-            }
-        }
-    }
-    public void shiftColumn(int shiftAmount)
-    {
-        String[][] tempShift = new String[numRows][numCols];
-        if (shiftAmount >= 0)
-        {
-            for (int c = 0; c < letterBlock[0].length; c++)
-            {
-                for (int r = 0; r < letterBlock.length; r++)
-                {
-                    if (r >= letterBlock.length - shiftAmount)
-                    {
-                        tempShift[shiftAmount - (numRows - r)][c] = letterBlock[r][c];
-                    }
-                    else
-                    {
-                        tempShift[r + shiftAmount][c] = letterBlock[r][c];
-                    }
-                }
-            }
-        }
-        else
-        {
-            for (int c = 0; c < letterBlock[0].length; c++)
-            {
-                for (int r = 0; r < letterBlock.length; r++)
-                {
-                    if (r < shiftAmount * -1)
-                    {
-                        tempShift[numRows - (shiftAmount * -1 - r)][c] = letterBlock[r][c];
-                    }
-                    else
-                    {
-                        tempShift[r - (shiftAmount * -1)][c] = letterBlock[r][c];
-                    }
-                }
-            }
-        }
-        for (int r = 0; r < tempShift.length; r++)
-        {
-            for (int c = 0; c < tempShift[0].length; c++)
-            {
-                letterBlock[r][c] = tempShift[r][c];
-            }
-        }
     }
 }
