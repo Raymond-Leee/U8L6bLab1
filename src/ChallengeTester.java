@@ -13,8 +13,8 @@ public class ChallengeTester
             System.out.println("(D)ecrypt Message");
             System.out.println("(Q)uit");
             System.out.print("User Choice: ");
-            String choice = sc.next();
-            if (choice.equals("E") || choice.equals("e"))
+            String userChoice = sc.next();
+            if (userChoice.equals("E") || userChoice.equals("e"))
             {
                 System.out.print("Enter row number: ");
                 int numRows = sc.nextInt();
@@ -27,10 +27,10 @@ public class ChallengeTester
                 Encryptor secretMessage = new Encryptor(numRows, numColumns, shiftRow, shiftCol);
                 System.out.print("Enter message that will be encrypted: ");
                 sc.nextLine();
-                String message = sc.nextLine();
-                System.out.println("Encrypted message: " + secretMessage.encryptMessage(message));
+                String userMessage = sc.nextLine();
+                System.out.println("Encrypted message: " + secretMessage.encryptMessage(userMessage));
             }
-            else if (choice.equals("D") || choice.equals("d"))
+            else if (userChoice.equals("D") || userChoice.equals("d"))
             {
                 System.out.print("Enter row number: ");
                 int numRows = sc.nextInt();
@@ -43,10 +43,10 @@ public class ChallengeTester
                 Encryptor secretMessage = new Encryptor(numRows, numColumns, rowShift, colShift);
                 System.out.print("Enter the message that will be decrypted: ");
                 sc.nextLine();
-                String message = sc.nextLine();
-                System.out.println("Decrypted message: " + secretMessage.decryptMessage(message));
+                String userMessage = sc.nextLine();
+                System.out.println("Decrypted message: " + secretMessage.decryptMessage(userMessage));
             }
-            else if (choice.equals("Q") || choice.equals("q"))
+            else if (userChoice.equals("Q") || userChoice.equals("q"))
             {
                 exit = true;
             }
