@@ -5,8 +5,8 @@ public class ChallengeTester
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        boolean userQuit = false;
-        while (!userQuit)
+        boolean exit = false;
+        while (!exit)
         {
             System.out.println("Choices:");
             System.out.println("(E)ncrypt Message");
@@ -48,7 +48,7 @@ public class ChallengeTester
             }
             else if (choice.equals("Q") || choice.equals("q"))
             {
-                userQuit = true;
+                exit = true;
             }
             else
             {
